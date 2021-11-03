@@ -22,8 +22,6 @@ String::String() {
     str = new char[1];
     str[0] = '\0';
 }
-
-
 /*
 Konstruktor : Zeichen
 Beschreibung :
@@ -43,8 +41,6 @@ String::String(char c) {
     str[0] = c;
     str[1] = '\0';
 }
-
-
 /*
 Konstruktor : Zeichenkette
 Beschreibung :
@@ -58,9 +54,19 @@ Parameter:
 Rückgabe:
 	keine
 */
-
 String::String(const char *s) {
-    // TODO
+    size = 0;
+    while (*s != '\0'){
+        size++;
+        s++;
+    }
+    s = s - size;
+    str = new char[size];
+    for (int i = 0; i < size; ++i) {
+        str[i] = *s;
+        s++;
+    }
+    str[size] = '\0';
 }
 
 /*

@@ -3,4 +3,4 @@ project(Schein3)
 
 set(CMAKE_CXX_STANDARD 98)
 
-add_executable(main main.cpp String.cpp String.h)
+add_executable(Schein3 main.cpp String.cpp String.h)
