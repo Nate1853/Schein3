@@ -1,5 +1,6 @@
 // String.cpp
 #include <iostream>
+
 using namespace std;
 
 #include "String.h"
@@ -22,6 +23,7 @@ String::String() {
     str = new char[1];
     str[0] = '\0';
 }
+
 /*
 Konstruktor : Zeichen
 Beschreibung :
@@ -41,6 +43,7 @@ String::String(char c) {
     str[0] = c;
     str[1] = '\0';
 }
+
 /*
 Konstruktor : Zeichenkette
 Beschreibung :
@@ -56,13 +59,13 @@ Rückgabe:
 */
 String::String(const char *s) {
     size = 0;
-    while (*s != '\0'){
+    while (*s != '\0') {
         size++;
         s++;
     }
     s = s - size;
     str = new char[size];
-    for (int i = 0; i < size; ++i) {
+    for (int i = 0; i < size; i++) {
         str[i] = *s;
         s++;
     }
@@ -83,8 +86,13 @@ Rückgabe:
 	keine
 */
 
-String::String(const String& s) {
-    // TODO
+String::String(const String &s) {
+    size = s.size;
+    str = new char[size];
+    for (int i = 0; i < size; i++) {
+        str[i] = s.str[i];
+    }
+    str[size] = '\0';
 }
 
 
@@ -103,7 +111,7 @@ Rückgabe:
 	keine
 */
 
-String::String(String&& s) {
+String::String(String &&s) {
     // TODO
 }
 
@@ -122,7 +130,7 @@ Rückgabe:
 	Zeichen an der Stelle index
 */
 
-char& String::operator[](int index) {
+char &String::operator[](int index) {
     // TODO
 }
 
@@ -140,7 +148,7 @@ Rückgabe:
 	Referenz auf das aktuelle Stringobjekt
 */
 
-String& String::operator=(const String& s) {
+String &String::operator=(const String &s) {
     // TODO
 }
 
@@ -158,10 +166,9 @@ Rückgabe:
 	Referenz auf das aktuelle Stringobjekt
 */
 
-String& String::operator=(String&& s) {
+String &String::operator=(String &&s) {
     // TODO
 }
-
 
 
 /*
@@ -177,6 +184,6 @@ Rückgabe:
 	Referenz auf das aktuelle Stringobjekt
 */
 
-String& String::operator+=(String& s) {
+String &String::operator+=(String &s) {
     // TODO
 }
