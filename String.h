@@ -23,6 +23,7 @@ public:
     // make friend, so we can access private members
     friend ostream& operator<< (ostream &out, String &s);
 
+    String method(String &a, String &b);
 };
 
 

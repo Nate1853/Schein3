@@ -8,23 +8,25 @@ ostream &operator<<(ostream &out, String &s) {
     return out;
 }
 
-
 int main() {
     const char c1 = 'H';
     const char *c2 = "Hallo";
     const char *c3 = "HalloWorld";
 
+
     String s;          // Konstruktor: Standard
 
-    String s2(c1);      // Konstruktor: Konstanten
+    String s2(c1);     // Konstruktor: Konstanten
 
     String s3(c2);     // Konstruktor: Zeichenkette
     String s4(c3);
 
     String s5(s4);     // Konstruktor: Kopierkonstruktor
 
-    String s6;
+    String s6(String("sad"));    // Konstruktor: Verschiebekonstruktor
+
     String s7;
+   // String::operator[](2);
     String s8;
     String s9;
     String s10;

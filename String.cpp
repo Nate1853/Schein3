@@ -5,6 +5,7 @@ using namespace std;
 
 #include "String.h"
 
+
 /*
 Konstruktor : Standard Konstruktor
 Beschreibung :
@@ -95,7 +96,6 @@ String::String(const String &s) {
     str[size] = '\0';
 }
 
-
 /*
 Konstruktor : Verschiebekonstruktor
 Beschreibung :
@@ -110,9 +110,15 @@ Parameter:
 Rückgabe:
 	keine
 */
+String String::method(String &a, String &b) {
+    return a;
+}
 
 String::String(String &&s) {
-    // TODO
+    str = s.str;
+    size = s.size;
+    s.str = nullptr;
+    s.size = 0;
 }
 
 String::~String() { delete[] str; }
@@ -121,17 +127,18 @@ String::~String() { delete[] str; }
 /*
 Operator : []
 Beschreibung :
-	Liefert das an der  übergebenen Position vorhanden Zeichen zurück.
+	Liefert das an der übergebenen Position vorhanden Zeichen zurück.
 
 Parameter:
-	index - Position des Zeichen in der Zeichenkette
+	index - Position des Zeichens in der Zeichenkette
 
 Rückgabe:
 	Zeichen an der Stelle index
 */
 
 char &String::operator[](int index) {
-    // TODO
+    char c = this->str[index];
+    return c;
 }
 
 
@@ -149,7 +156,12 @@ Rückgabe:
 */
 
 String &String::operator=(const String &s) {
-    // TODO
+    this->size = s.size;
+    str = new char[this->size];
+    for (int i = 0; i < size; ++i) {
+        this->str[i] = s.str[i];
+    }
+    this->str[size] = '\0';
 }
 
 
@@ -167,7 +179,15 @@ Rückgabe:
 */
 
 String &String::operator=(String &&s) {
-    // TODO
+    this->size = s.size;
+    str = new char[this->size];
+    for (int i = 0; i < size; ++i) {
+        this->str[i] = s.str[i];
+    }
+    this->str[size] = '\0';
+
+    s.size = 0;
+    s.str = nullptr;
 }
 
 
@@ -185,5 +205,19 @@ Rückgabe:
 */
 
 String &String::operator+=(String &s) {
-    // TODO
+    int size_temp = this->size;
+    this->size = size_temp + s.size;
+    String str_temp = new char[size];
+    int i;
+    for (i = 0; i < size_temp; i++) {
+        str_temp[i] = this->str[i];
+    }
+    for (i = size_temp;  i< this->size ; i++) {
+        str_temp[i] = s.str[i];
+    }
+
+    for (int j = 0; j < size_temp; ++j) {
+        this->str[j] = str_temp[j];
+    }
+    this->str[size] = '\0';
 }
