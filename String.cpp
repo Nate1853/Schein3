@@ -156,12 +156,16 @@ Rückgabe:
 */
 
 String &String::operator=(const String &s) {
-    this->size = s.size;
-    str = new char[this->size];
-    for (int i = 0; i < size; ++i) {
-        this->str[i] = s.str[i];
+    if(this != &s) {
+        this->size = s.size;
+        delete[]str;
+        str = new char[this->size + 1];
+        for (int i = 0; i < size; ++i) {
+            this->str[i] = s.str[i];
+        }
+        this->str[size] = '\0';
     }
-    this->str[size] = '\0';
+    return *this;
 }
 
 
@@ -180,6 +184,7 @@ Rückgabe:
 
 String &String::operator=(String &&s) {
     this->size = s.size;
+    delete(this->str);
     str = new char[this->size];
     for (int i = 0; i < size; ++i) {
         this->str[i] = s.str[i];
@@ -188,6 +193,8 @@ String &String::operator=(String &&s) {
 
     s.size = 0;
     s.str = nullptr;
+
+    return *this;
 }
 
 
@@ -207,17 +214,19 @@ Rückgabe:
 String &String::operator+=(String &s) {
     int size_temp = this->size;
     this->size = size_temp + s.size;
-    String str_temp = new char[size];
+    char* str_temp = new char [this->size];
     int i;
     for (i = 0; i < size_temp; i++) {
         str_temp[i] = this->str[i];
     }
     for (i = size_temp;  i< this->size ; i++) {
-        str_temp[i] = s.str[i];
+        str_temp[i] = s.str[i - size_temp];
     }
 
-    for (int j = 0; j < size_temp; ++j) {
+    for (int j = 0; j < this->size; ++j) {
         this->str[j] = str_temp[j];
     }
     this->str[size] = '\0';
+
+    return *this;
 }
