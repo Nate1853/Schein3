@@ -51,49 +51,51 @@ ostream &operator<<(ostream &out, String &s) {
     return out;
 }
 
-
 int main() {
     String s;
     String s2('a');
     String s3("Hallo");
-    String s32("HalloWorld");
     String s4(s3);
 
-    cout << endl << "******* Constructors ********" << endl;
+    cout <<  endl << "******* Constructors ********" << endl;
 
-    cout << "empty constructor  : '" << s << "'" << endl;
-    cout << "char constructor   : '" << s2 << "'" << endl;
-    cout << "string constructor : '" << s3 << "'" << endl;
+    cout << "empty constructor  : '" << s << "'"  << endl;
+    cout << "char constructor   : '" << s2 << "'"  << endl;
+    cout << "string constructor : '" << s3 << "'"  << endl;
     cout << "copy constructor   : '" << s4 << "'" << endl << endl;
 
     cout << endl << "******* move Constructor ********" << endl;
-    cout << "source            : '" << s3 << "'" << endl;
+    cout << "source            : '"  << s3 << "'"  <<  endl;
     String s5 = std::move(s3);
     cout << "move constructor  : '" << s5 << "'" << endl;
-    cout << "empty source      : '" << s3 << "'" << endl;
+    cout << "empty source      : '" << s3 << "'" << endl ;
+
+    cout <<  endl << "******* index ********" << endl;
+    cout << "index 0 : '"  << s5[0] << "'" << endl;
+    cout << "index 1 : '"  << s5[1] << "'" << endl;
+    cout << "index 2 : '"  << s5[2] << "'" << endl;
+    cout << "index 3 : '"  << s5[3] << "'" << endl << endl;
+    cout << "index 99 : '"  << s5[99] << "'" << endl;
 
 
-    cout << endl << "******* = operator ********" << endl;
+    cout <<  endl << "******* = operator ********" << endl;
 
     s2 = s5;
-   // s32 = s32;
-    cout << "source       : '" << s2 << "'" << endl;
+    cout << "source       : '"  << s2 << "'" <<  endl;
     s2 = s2;
-    cout << "copy self    : '" << s2 << "'" << endl << endl;
+    cout << "copy self    : '"  << s2 << "'" << endl << endl;
 
 
-    cout << "source       : '" << s5 << "'" << endl;
+    cout << "source       : '"  << s5 << "'" <<  endl;
     s3 = std::move(s5);
-    cout << "move         : '" << s3 << "'" << endl;
-    cout << "empty source : '" << s5 << "'" << endl << endl;
+    cout << "move         : '"  << s3 << "'" <<  endl;
+    cout << "empty source : '"  << s5 << "'" << endl << endl;
 
 
-    cout << endl << "******* =+ operator ********" << endl;
+    cout <<  endl << "******* =+ operator ********" << endl;
     cout << "source            : '" << s3 << "'" << endl;
     s4 += s3;
     cout << "different sources : '" << s4 << "'" << endl << endl;
     s4 += s4;
     cout << "same source       : '" << s4 << "'" << endl << endl;
-
-
 }
